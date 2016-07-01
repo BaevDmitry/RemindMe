@@ -11,7 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.jezik.remindme.adapter.TabsPagerFragmentAdapter;
+import com.jezik.remindme.adapter.PagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initTabs() {
         viewPager = (ViewPager) findViewById(R.id.viewPager);
-        TabsPagerFragmentAdapter adapter = new TabsPagerFragmentAdapter(this, getSupportFragmentManager());
+        PagerAdapter adapter = new PagerAdapter(this, getSupportFragmentManager());
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showNotificationTab() {
-        viewPager.setCurrentItem(Constants.TAB_NOTIFICATIONS);
+        viewPager.setCurrentItem(Constants.TAB_IDEAS);
     }
 
 }

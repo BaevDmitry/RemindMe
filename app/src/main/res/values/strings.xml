@@ -1,5 +1,8 @@
 <resources>
+    //Application name
     <string name="app_name">RemindMe</string>
+
+    //Name for Search button
     <string name="search_title">Search</string>
 
     <string name="menu_item_notification">Напоминания</string>
@@ -7,6 +10,7 @@
     <string name="view_navigation_open">Open</string>
     <string name="view_navigation_close">Close</string>
 
+    //Tab names
     <string name="tab_item_history">History</string>
     <string name="tab_item_ideas">Ideas</string>
     <string name="tab_item_todo">TODO</string>
