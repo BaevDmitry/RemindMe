@@ -5,12 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.jezik.remindme.Constants;
 import com.jezik.remindme.R;
-import com.jezik.remindme.fragment.BirthdaysFragment;
-import com.jezik.remindme.fragment.HistoryFragment;
-import com.jezik.remindme.fragment.IdeasFragment;
-import com.jezik.remindme.fragment.TodoFragment;
+import com.jezik.remindme.fragment.TabFragment;
 
 /**
  * Created by Дмитрий on 23.06.2016.
@@ -37,24 +33,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = null;
-
-        switch (position){
-            case Constants.TAB_HISTORY:
-                fragment = new HistoryFragment();
-                break;
-            case Constants.TAB_IDEAS:
-                fragment = new IdeasFragment();
-                break;
-            case Constants.TAB_TODO:
-                fragment = new TodoFragment();
-                break;
-            case Constants.TAB_BIRTHDAYS:
-                fragment = new BirthdaysFragment();
-                break;
-        }
-
-        return fragment;
+        return TabFragment.newInstance(position);
     }
 
     @Override

@@ -1,15 +1,18 @@
 package com.jezik.remindme;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.jezik.remindme.adapter.PagerAdapter;
 
@@ -18,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private ViewPager viewPager;
+    private FloatingActionButton fab;
 
 
     @Override
@@ -29,6 +33,16 @@ public class MainActivity extends AppCompatActivity {
         initToolbar();
         initNavigationView();
         initTabs();
+
+        fab = (FloatingActionButton) findViewById(R.id.floating_action_button);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MainActivity.this, AddReminderActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -67,8 +81,18 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem item) {
                 drawerLayout.closeDrawers();
                 switch (item.getItemId()) {
-                    case R.id.actionNotificationItem:
-                        showNotificationTab();
+                    case R.id.actionHistoryItem:
+                        showHistoryTab();
+                        break;
+                    case R.id.actionIdeasItem:
+                        showIdeasTab();
+                        break;
+                    case R.id.actionTodoItem:
+                        showToDoTab();
+                        break;
+                    case R.id.actionBirthdaysItem:
+                        showBirthdaysTab();
+                        break;
                 }
                 return true;
             }
@@ -84,8 +108,20 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    private void showNotificationTab() {
+    private void showHistoryTab() {
+        viewPager.setCurrentItem(Constants.TAB_HISTORY);
+    }
+
+    private void showIdeasTab() {
         viewPager.setCurrentItem(Constants.TAB_IDEAS);
+    }
+
+    private void showToDoTab() {
+        viewPager.setCurrentItem(Constants.TAB_TODO);
+    }
+
+    private void showBirthdaysTab() {
+        viewPager.setCurrentItem(Constants.TAB_BIRTHDAYS);
     }
 
 }

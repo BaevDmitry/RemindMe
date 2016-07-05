@@ -1,10 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/actionNotificationItem"
-        android:orderInCategory="1"
-        android:title="@string/menu_item_notification"
-        android:icon="@drawable/message_text" />
+    <group android:id="@+id/group1"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/actionHistoryItem"
+            android:orderInCategory="1"
+            android:title="@string/menu_item_history"
+            android:icon="@drawable/history" />
+
+        <item
+            android:id="@+id/actionIdeasItem"
+            android:orderInCategory="2"
+            android:title="@string/menu_item_ideas"
+            android:icon="@drawable/white_balance_incandescent" />
+
+        <item
+            android:id="@+id/actionTodoItem"
+            android:orderInCategory="3"
+            android:title="@string/menu_item_todo"
+            android:icon="@drawable/hand_pointing_right" />
+
+        <item
+            android:id="@+id/actionBirthdaysItem"
+            android:orderInCategory="4"
+            android:title="@string/menu_item_birthdays"
+            android:icon="@drawable/cake_variant" />
+
+    </group>
+
+    <group android:id="@+id/group2"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/actionSettingsItem"
+            android:orderInCategory="5"
+            android:title="@string/menu_item_settings"
+            android:icon="@drawable/settings" />
+
+        <item
+            android:id="@+id/actionInformationItem"
+            android:orderInCategory="6"
+            android:title="@string/menu_item_information"
+            android:icon="@drawable/information" />
+    </group>
 
 </menu>
