@@ -40,4 +40,9 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return tabs.length;
     }
+
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
 }

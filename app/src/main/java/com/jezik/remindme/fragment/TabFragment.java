@@ -9,14 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.jezik.remindme.Constants;
 import com.jezik.remindme.R;
-import com.jezik.remindme.ReminderData;
 import com.jezik.remindme.adapter.ReminderAdapter;
 import com.jezik.remindme.database.DbHelper;
-import com.jezik.remindme.Constants;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class TabFragment extends Fragment {
@@ -56,35 +52,31 @@ public class TabFragment extends Fragment {
 
         switch (tabNumber) {
             case Constants.TAB_HISTORY:
-                adapter = new ReminderAdapter(createMockData());
+                adapter = new ReminderAdapter(dbHelper.getAllReminders(), getContext());
                 checkAdapter();
 
-                recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                createRecyclerView();
                 break;
 
             case Constants.TAB_IDEAS:
-                adapter = new ReminderAdapter(createEmptyData());
+                adapter = new ReminderAdapter(dbHelper.getIdeasReminders(getContext()), getContext());
                 checkAdapter();
 
-                recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                createRecyclerView();
                 break;
 
             case Constants.TAB_TODO:
-                adapter = new ReminderAdapter(createEmptyData());
+                adapter = new ReminderAdapter(dbHelper.getTodoReminders(getContext()), getContext());
                 checkAdapter();
 
-                recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                createRecyclerView();
                 break;
 
             case Constants.TAB_BIRTHDAYS:
-                adapter = new ReminderAdapter(createEmptyData());
+                adapter = new ReminderAdapter(dbHelper.getBirthdaysReminders(getContext()), getContext());
                 checkAdapter();
 
-                recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                createRecyclerView();
                 break;
         }
 
@@ -92,15 +84,9 @@ public class TabFragment extends Fragment {
         return view;
     }
 
-    private List<ReminderData> createMockData() {
-        List<ReminderData> list = new ArrayList<>();
-        list.add(new ReminderData("Hello", "I'm test content", "05.07.2016", "Ideas"));
-        return list;
-    }
-
-    private List<ReminderData> createEmptyData() {
-        List<ReminderData> list = new ArrayList<>();
-        return list;
+    private void createRecyclerView() {
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     private void checkAdapter() {
@@ -113,6 +99,7 @@ public class TabFragment extends Fragment {
             emptyTextView.setVisibility(View.GONE);
         }
     }
+
 
 
 }

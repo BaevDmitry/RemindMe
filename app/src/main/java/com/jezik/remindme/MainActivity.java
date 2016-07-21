@@ -20,9 +20,14 @@ public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
-    private ViewPager viewPager;
+    public static ViewPager viewPager;
     private FloatingActionButton fab;
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        initTabs();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         initToolbar();
         initNavigationView();
-        initTabs();
 
         fab = (FloatingActionButton) findViewById(R.id.floating_action_button);
         fab.setOnClickListener(new View.OnClickListener() {

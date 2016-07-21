@@ -8,7 +8,7 @@
     //Menu items for navigation drawer
     <string name="menu_item_history">History</string>
     <string name="menu_item_ideas">Ideas</string>
-    <string name="menu_item_todo">To Do</string>
+    <string name="menu_item_todo">TODO</string>
     <string name="menu_item_birthdays">Birthdays</string>
     <string name="menu_item_settings">Settings</string>
     <string name="menu_item_information">Information</string>
@@ -24,7 +24,34 @@
 
     //CardView specs
     <string name="card_checkbox">Done</string>
+    <string name="card_menu_edit">Edit</string>
+    <string name="card_menu_delete">Delete</string>
 
     //Empty recycler view state
     <string name="empty_state">Nothing to show</string>
+
+    //Add reminder activity strings
+    <string name="new_item_header">Header:</string>
+    <string name="new_item_header_hint">Enter the Header</string>
+    <string name="new_item_content">Content:</string>
+    <string name="new_item_content_hint">Enter new reminder</string>
+    <string name="new_item_category">Category:</string>
+    <string name="new_item_date">Date:</string>
+    <string name="new_item_date_hint">Enter the Date</string>
+    <string name="new_item_ok_button">OK</string>
+    <string name="header_error">Please, enter the header</string>
+    <string name="date_error">Please, enter the date</string>
+
+    //String array for spinner
+    <string-array name="spinner_array">
+        <item>Ideas</item>
+        <item>TODO</item>
+        <item>Birthdays</item>
+    </string-array>
+
+    //Strings for using in database
+    <string name="db_ideas">Ideas</string>
+    <string name="db_todo">TODO</string>
+    <string name="db_birthdays">Birthdays</string>
+
 </resources>

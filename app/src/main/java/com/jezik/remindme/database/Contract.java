@@ -19,5 +19,6 @@ public class Contract {
         public static final String CONTENT = "content";
         public static final String DATE = "date";
         public static final String FLAG = "flag";
+        public static final String DONE = "done";
     }
 }

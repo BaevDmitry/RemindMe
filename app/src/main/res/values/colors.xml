@@ -6,4 +6,8 @@
     <color name="colorWhite">#e2e2e2</color>
 
     <color name="absoluteWhite">#ffffff</color>
+
+    <color name="tabGreen">#398039</color>
+    <color name="tabBlue">#3c3cec</color>
+    <color name="tabRed">#9b2c2c</color>
 </resources>

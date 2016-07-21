@@ -10,12 +10,15 @@ public class ReminderData {
     private String content;
     private String date;
     private String flag;
+    private int is_done;
 
-    public ReminderData(String header, String content, String date, String flag) {
+    public ReminderData(String header, String content, String date, String flag, int is_done) {
         this.header = header;
         this.content = content;
         this.date = date;
         this.flag = flag;
+        this.is_done = is_done;
+
     }
 
     public String getHeader() {
@@ -48,5 +51,13 @@ public class ReminderData {
 
     public void setFlag(String flag) {
         this.flag = flag;
+    }
+
+    public int getIs_done() {
+        return is_done;
+    }
+
+    public void setIs_done(int is_done) {
+        this.is_done = is_done;
     }
 }
