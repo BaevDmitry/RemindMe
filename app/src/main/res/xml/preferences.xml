@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:key="pref_chosen_language"
+        android:title="@string/pref_language_title"
+        android:defaultValue="@string/pref_default_language"
+        android:entries="@array/pref_language_entry"
+        android:entryValues="@array/pref_language_entry"
+        android:summary="%s"/>
+
+    <ListPreference
+        android:key="pref_notification_type"
+        android:title="@string/pref_notification_type_title"
+        android:defaultValue="@string/pref_default_notification"
+        android:entries="@array/pref_notification_entry"
+        android:entryValues="@array/pref_notification_entry"
+        android:summary="%s"/>
+
+    <ListPreference
+        android:key="pref_notification_time"
+        android:title="@string/pref_notification_time_title"
+        android:defaultValue="@string/pref_default_timeNotification"
+        android:entries="@array/pref_notification_entry_time"
+        android:entryValues="@array/pref_notification_entry_time"
+        android:summary="%s"/>
+</PreferenceScreen>

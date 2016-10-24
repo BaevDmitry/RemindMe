@@ -2,10 +2,16 @@
     //Application name
     <string name="app_name">RemindMe</string>
 
+    //Reminder edit label
+    <string name="edit_label">Reminder edit</string>
+
+    <!--Settings Activity Label-->
+    <string name="title_activity_settings">Settings</string>
+
     //Name for Search button
     <string name="search_title">Search</string>
 
-    //Menu items for navigation drawer
+    Menu items for navigation drawer
     <string name="menu_item_history">History</string>
     <string name="menu_item_ideas">Ideas</string>
     <string name="menu_item_todo">TODO</string>
@@ -53,5 +59,31 @@
     <string name="db_ideas">Ideas</string>
     <string name="db_todo">TODO</string>
     <string name="db_birthdays">Birthdays</string>
+
+    //Language preferences
+    <string name="pref_language_title">Language</string>
+    <string name="pref_default_language">Default</string>
+    <string-array name="pref_language_entry">
+        <item>Default</item>
+        <item>English</item>
+        <item>Russian</item>
+    </string-array>
+
+    //Notification type preferences
+    <string name="pref_notification_type_title">Notification Type</string>
+    <string name="pref_default_notification">Vibrate</string>
+    <string-array name="pref_notification_entry">
+        <item>Just Notification</item>
+        <item>Vibrate</item>
+        <item>Sound and Vibrate</item>
+    </string-array>
+
+    //Notification time preferences
+    <string name="pref_notification_time_title">Notification Time</string>
+    <string name="pref_default_timeNotification">At the date</string>
+    <string-array name="pref_notification_entry_time">
+        <item>At the date</item>
+        <item>The day before</item>
+    </string-array>
 
 </resources>

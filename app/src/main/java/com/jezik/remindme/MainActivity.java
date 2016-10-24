@@ -49,11 +49,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
-    }
+    }*/
 
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -96,6 +96,10 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.actionBirthdaysItem:
                         showBirthdaysTab();
+                        break;
+                    case R.id.actionSettingsItem:
+                        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                        startActivity(intent);
                         break;
                 }
                 return true;

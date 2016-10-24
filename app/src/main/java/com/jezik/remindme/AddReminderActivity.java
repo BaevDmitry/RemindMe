@@ -172,19 +172,6 @@ public class AddReminderActivity extends AppCompatActivity {
         alarmManager.set(AlarmManager.RTC, when, pendingIntent);
     }
 
-    private void stopAlarm() {
-        Intent intent = new Intent(this, ReminderService.class);
-        intent.putExtra("header", et_header.getText().toString());
-        intent.putExtra("content", et_content.getText().toString());
-
-        Uri uri = Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME));
-        intent.setData(uri);
-
-        PendingIntent pendingIntent = PendingIntent.getService(getApplicationContext(), 0, intent, 0);
-        alarmManager.cancel(pendingIntent);
-    }
-
-
     // Show DatePickerDialog for the date of reminder
     public void showDateDialog(View view) {
         DialogFragment dialog = new DatePickerFragment();
