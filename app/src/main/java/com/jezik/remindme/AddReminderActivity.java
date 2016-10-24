@@ -1,8 +1,11 @@
 package com.jezik.remindme;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +19,11 @@ import android.widget.TextView;
 
 import com.jezik.remindme.database.DbHelper;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
 public class AddReminderActivity extends AppCompatActivity {
@@ -35,6 +42,8 @@ public class AddReminderActivity extends AppCompatActivity {
 
     private DbHelper dbHelper;
     ReminderData item;
+
+    private AlarmManager alarmManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,13 +81,15 @@ public class AddReminderActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     initStrings();
 
-                    if (item_header.isEmpty()) {
+                    if (item_header.trim().isEmpty()) {
                         et_header.setError(getString(R.string.header_error));
                     } else if (item_date.isEmpty()) {
                         tv_date.setError(getString(R.string.date_error));
                     } else {
                         item = new ReminderData(item_header, item_content, item_date, item_category, done);
                         dbHelper.updateReminder(header, content, flag, item);
+                        startAlarm();
+
                         finish();
                     }
                 }
@@ -91,13 +102,14 @@ public class AddReminderActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     initStrings();
 
-                    if (item_header.isEmpty()) {
+                    if (item_header.trim().isEmpty()) {
                         et_header.setError(getString(R.string.header_error));
                     } else if (item_date.isEmpty()) {
                         tv_date.setError(getString(R.string.date_error));
                     } else {
                         item = new ReminderData(item_header, item_content, item_date, item_category, 0);
                         dbHelper.insertReminderItem(item);
+                        startAlarm();
                         finish();
                     }
                 }
@@ -134,6 +146,45 @@ public class AddReminderActivity extends AppCompatActivity {
         item_date = tv_date.getText().toString();
     }
 
+    // Sets AlarmManager for Notification Service
+    private void startAlarm() {
+        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Calendar calendar = Calendar.getInstance();
+        String dateStr = tv_date.getText().toString();
+        DateFormat formatter = DateFormat.getDateInstance(DateFormat.LONG, Locale.getDefault());
+        try {
+            Date date = formatter.parse(dateStr);
+            calendar.setTime(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        long when = calendar.getTimeInMillis();
+        Intent intent = new Intent(this, ReminderService.class);
+        intent.putExtra("header", et_header.getText().toString());
+        intent.putExtra("content", et_content.getText().toString());
+
+        Uri uri = Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME));
+        intent.setData(uri);
+
+        PendingIntent pendingIntent = PendingIntent.getService(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        alarmManager.set(AlarmManager.RTC, when, pendingIntent);
+    }
+
+    private void stopAlarm() {
+        Intent intent = new Intent(this, ReminderService.class);
+        intent.putExtra("header", et_header.getText().toString());
+        intent.putExtra("content", et_content.getText().toString());
+
+        Uri uri = Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME));
+        intent.setData(uri);
+
+        PendingIntent pendingIntent = PendingIntent.getService(getApplicationContext(), 0, intent, 0);
+        alarmManager.cancel(pendingIntent);
+    }
+
+
     // Show DatePickerDialog for the date of reminder
     public void showDateDialog(View view) {
         DialogFragment dialog = new DatePickerFragment();
@@ -156,13 +207,10 @@ public class AddReminderActivity extends AppCompatActivity {
 
         @Override
         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-            String locale = Locale.getDefault().toString();
 
-            if (locale.equals("ru_RU")) {
-                tv_date.setText(day + "." + (month + 1) + "." + year);
-            } else {
-                tv_date.setText((month + 1) + "." + day + "." + year);
-            }
+            DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, Locale.getDefault());
+            Calendar calendar = new GregorianCalendar(year, month, day);
+            tv_date.setText(df.format(calendar.getTime()));
         }
     }
 }

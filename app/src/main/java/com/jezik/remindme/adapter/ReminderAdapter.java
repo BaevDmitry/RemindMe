@@ -117,6 +117,7 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.ListVi
                                 dataList.remove(holder.getAdapterPosition());
                                 notifyDataSetChanged();
                                 MainActivity.viewPager.getAdapter().notifyDataSetChanged();
+
                                 break;
                         }
 

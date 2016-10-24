@@ -1,6 +1,8 @@
 package com.jezik.remindme;
 
 
+import android.app.PendingIntent;
+
 /**
  * Created by Дмитрий on 04.07.2016.
  */
